@@ -54,6 +54,7 @@ app.set('view engine', 'hbs')
 app.get('/', (req, res) => {
   res.send('Server Start.')
 })
+app.use('/users', require('./routes/user.js'))
 
 
 // start server
