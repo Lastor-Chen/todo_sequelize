@@ -14,7 +14,7 @@ const bcrypt = require('bcryptjs')
 // ==============================
 
 router.get('/signin', (req, res) => {
-  res.send('GET sign in')
+  res.render('signin')
 })
 
 router.post('/signin', (req, res) => {
