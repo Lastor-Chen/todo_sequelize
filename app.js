@@ -52,7 +52,7 @@ app.set('view engine', 'hbs')
 // ==============================
 
 app.get('/', (req, res) => {
-  res.send('Server Start.')
+  res.render('index')
 })
 app.use('/users', require('./routes/user.js'))
 
