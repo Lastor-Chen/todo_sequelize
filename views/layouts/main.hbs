@@ -4,9 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- CSS CDN -->
+  <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
   <title>todo list SQL</title>
 </head>
 <body>
-  {{{body}}}
+  <header>
+    <nav class="navbar navbar-dark bg-primary justify-content-between">
+      <div class="container">
+        <a class="navbar-brand" href="/">Todo List</a>
+        {{#if isAuthenticated}}
+          <a href="/user/signout" class="btn btn-outline-light">Sign out</a>
+        {{else}}
+          <a href="/user/signin" class="btn btn-outline-light">Sign in</a>
+        {{/if}}
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container mt-3">
+      {{{body}}}
+    </div>
+  </main>
+
+  <!-- JS CDN -->
+  <import>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+  </import>
 </body>
 </html>

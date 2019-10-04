@@ -54,6 +54,7 @@ app.set('view engine', 'hbs')
 app.use((req, res, next) => {
   // user 資料
   res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated()
 
   next()
 })
