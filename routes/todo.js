@@ -17,30 +17,85 @@ const Todo = db.Todo
 
 // Create
 router.get('/new', (req, res) => {
-  res.send('GET new')
+  res.render('new')
 })
 
 router.post('/new', (req, res) => {
-  res.send('POST new')
+  Todo
+    .create({
+      name: req.body.name,
+      done: false,
+      UserId: req.user.id
+    })
+    .then(todo => res.redirect('/index'))
+    .catch(err => res.status(422).json(err))
 })
 
 // Read
 router.get('/:id', (req, res) => {
-  res.send('GET detail')
+  User.findByPk(req.user.id)
+    .then(user => {
+      if (!user) throw new Error('User not found')
+
+      return Todo.findOne({ 
+        where: {
+          UserId: req.user.id,
+          Id: req.params.id
+        } 
+      })
+    })
+    .then(todo => res.render('detail', { todo }) )
+    .catch(err => res.status(422).json(err) )
 })
 
 // Update
 router.get('/:id/edit', (req, res) => {
-  res.send('GET edit')
+  User.findByPk(req.user.id)
+    .then(user => {
+      if (!user) throw new Error('User not found')
+
+      return Todo.findOne({
+        where: {
+          UserId: req.user.id,
+          Id: req.params.id
+        } 
+      })
+    })
+    .then(todo => res.render('edit', { todo }) )
+    .catch(err => res.status(422).json(err))
 })
 
 router.put('/:id/edit', (req, res) => {
-  res.send('PUT edit')
+  Todo.findOne({ 
+    where: {
+        UserId: req.user.id,
+        Id: req.params.id
+      }
+  })
+  .then(todo => {
+    todo.name = req.body.name
+    todo.done = (req.body.done === 'on')  // 轉布林
+    return todo.save()
+  })
+  .then(todo => res.redirect(`/todos/${req.params.id}`))
+  .catch(err => res.status(422).json(err) )
 })
 
 // Delete
 router.delete('/:id/delete', (req, res) => {
-  res.send('DELETE todo')
+  User.findByPk(req.user.id)
+    .then(user => {
+      if (!user) throw new Error('User not found')
+
+      return Todo.destroy({
+        where: {
+          UserId: req.user.id,
+          Id: req.params.id
+        }
+      })
+    })
+    .then(todo => res.redirect('/index'))
+    .catch(err => res.status(422).json(err) )
 })
 
 
