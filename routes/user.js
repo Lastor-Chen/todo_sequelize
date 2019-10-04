@@ -17,7 +17,7 @@ const User = db.User
 // ==============================
 
 router.get('/signin', (req, res) => {
-  res.render('signin')
+  res.render('signin', { css: 'sign' })
 })
 
 router.post('/signin', (req, res, next) => {

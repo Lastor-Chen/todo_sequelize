@@ -1,0 +1,20 @@
+.row .col-8 {
+  min-width: 360px;
+}
+
+.fb-icon {
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  top: calc(50% - 1rem);
+  left: 0.5rem;
+}
+
+#fb-btn {
+  background-color: #385185;
+  border-color: #385185;
+}
+
+#fb-btn:hover {
+  background-color: #263a66;
+}
