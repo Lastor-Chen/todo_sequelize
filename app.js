@@ -12,6 +12,9 @@ const session = require('express-session')              // session 輔助套件
 const passport = require('passport')                    // 處理 user authentication
 const flash = require('connect-flash')                  // 產生 flash message
 
+// custom module
+const isAuthed = require('./config/auth.js')
+
 
 // 環境 setting
 // ==============================
@@ -59,7 +62,7 @@ app.use((req, res, next) => {
 // route 設定
 // ==============================
 
-app.get('/', (req, res) => {
+app.get('/', isAuthed, (req, res) => {
   res.render('index')
 })
 app.use('/users', require('./routes/user.js'))
