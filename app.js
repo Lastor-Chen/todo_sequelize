@@ -63,6 +63,7 @@ app.use((req, res, next) => {
 // ==============================
 
 app.use('/users', require('./routes/user.js'))
+app.use('/todos', isAuthed, require('./routes/todo.js'))
 app.use('/', isAuthed, require('./routes/home.js'))
 
 
