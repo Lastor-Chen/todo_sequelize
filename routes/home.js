@@ -8,6 +8,7 @@ const router = express.Router()
 
 // sequelize Model
 const db = require('../models')
+const User = db.User
 const Todo = db.Todo
 
 
@@ -19,11 +20,16 @@ router.get('/', (req, res) => {
 })
 
 router.get('/index', (req, res) => {
-  Todo.findByPk(req.user.dataValues.id)
+  User.findByPk(req.user.id)
+    .then(user => {
+      if (!user) throw new Error('User not found')
+
+      return Todo.findAll({ where: { UserId: req.user.id } })
+    })
     .then(todos => {
       res.render('index', { todos })
     })
-    .catch(err => console.error(err))
+    .catch(err => res.status(422).json(err) )
 })
 
 
