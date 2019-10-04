@@ -22,7 +22,7 @@ router.get('/signin', (req, res) => {
 
 router.post('/signin', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/index',
     failureRedirect: '/users/signin'
   })(req, res, next)
 })
@@ -38,7 +38,6 @@ router.post('/signup', (req, res) => {
     .findOne({ where: { email: email } })
     .then(user => {
       if (user) {
-        console.log('User already exists')
         res.render('signup', { name, email, password, password2 })
       } else {
         const newUser = new User({ name, email, password })

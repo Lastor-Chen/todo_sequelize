@@ -62,10 +62,8 @@ app.use((req, res, next) => {
 // route 設定
 // ==============================
 
-app.get('/', isAuthed, (req, res) => {
-  res.render('index')
-})
 app.use('/users', require('./routes/user.js'))
+app.use('/', isAuthed, require('./routes/home.js'))
 
 
 // start server
