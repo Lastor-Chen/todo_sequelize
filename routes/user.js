@@ -6,8 +6,11 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
-// const User = require('../models/user.js')
 const bcrypt = require('bcryptjs')
+
+// sequelize Model
+const db = require('../models')
+const User = db.User
 
 
 // routes '/users'
@@ -26,7 +29,13 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-  res.send('POST sign up')
+  User
+    .create({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password
+    })
+    .then(user => res.redirect('/'))
 })
 
 router.get('/signout', (req, res) => {
