@@ -29,13 +29,22 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
+  const { name, email, password, password2 } = req.body
+  
   User
-    .create({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
+    .findOne({ where: { email: email } })
+    .then(user => {
+      if (user) {
+        console.log('User already exists')
+        res.render('signup', { name, email, password, password2 })
+      } else {
+        const newUser = new User({ name, email, password })
+
+        newUser.save()
+          .then(user => res.redirect('/'))
+      }
     })
-    .then(user => res.redirect('/'))
+    .catch(err => console.error(err))
 })
 
 router.get('/signout', (req, res) => {
