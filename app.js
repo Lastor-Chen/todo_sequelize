@@ -35,7 +35,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-// require('./config/passport.js')(passport)
+require('./config/passport.js')(passport)
 
 // 設定模板引擎
 const hbs = exphbs.create({
@@ -46,6 +46,14 @@ const hbs = exphbs.create({
 
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
+
+// 模板引擎公用變數
+app.use((req, res, next) => {
+  // user 資料
+  res.locals.user = req.user
+
+  next()
+})
 
 
 // route 設定

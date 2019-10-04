@@ -20,8 +20,11 @@ router.get('/signin', (req, res) => {
   res.render('signin')
 })
 
-router.post('/signin', (req, res) => {
-  res.send('POST sign in')
+router.post('/signin', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/signin'
+  })(req, res, next)
 })
 
 router.get('/signup', (req, res) => {
