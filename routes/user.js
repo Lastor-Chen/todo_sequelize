@@ -47,6 +47,8 @@ router.post('/signup', async (req, res, next) => {
   const input = { ...req.body }
   
   // 檢查表單
+  if (!input.name) { input.name = 'User' }  // default name
+
   const error = await checkSignUp(input) || []
   if (error.length) return res.render('signup', { css: 'sign', input, error })
 
