@@ -43,8 +43,8 @@ router.get('/signup', (req, res) => {
   res.render('signup', { css: 'sign' })
 })
 
-router.post('/signup', async (req, res) => {
-  const input = req.body
+router.post('/signup', async (req, res, next) => {
+  const input = { ...req.body }
   
   // 檢查表單
   const error = await checkSignUp(input) || []
@@ -55,12 +55,14 @@ router.post('/signup', async (req, res) => {
   const hash = bcrypt.hashSync(input.password, slat)
   input.password = hash
 
-  try {
-    await User.create(input)
-    res.redirect('signin')
-  } catch (err) {
-    res.status(422).json(err)
-  }
+  try { await User.create(input) }
+  catch (err) { res.status(422).json(err) }
+
+  // 註冊後即座登入
+  passport.authenticate('local', {
+    successRedirect: '/index',
+    failureRedirect: '/users/signin',
+  })(req, res, next)
 })
 
 // 登出
