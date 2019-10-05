@@ -50,7 +50,8 @@ router.post('/signup', (req, res) => {
 })
 
 router.get('/signout', (req, res) => {
-  res.send('GET sign out')
+  req.logout()
+  res.redirect('/users/signin')
 })
 
 
