@@ -1,5 +1,19 @@
-<a href="/todos/new" class="btn btn-outline-primary mb-3">Create</a>
+{{> alert}}
+{{!-- form --}}
+<div class="row mb-3">
+  <div class="col-auto mx-auto">
+    <form action="/todos/new" method="POST">
+      <div class="input-group">
+        <input type="text" class="form-control" name="name" placeholder="Add a new todo">
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-success">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
+{{!-- todos data plane --}}
 <ul class="list-group">
   {{#each todos}}
   <li class="list-group-item">

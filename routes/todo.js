@@ -16,11 +16,13 @@ const Todo = db.Todo
 // ============================
 
 // Create
-router.get('/new', (req, res) => {
-  res.render('new')
-})
-
 router.post('/new', (req, res) => {
+  // check input
+  if (!req.body.name) {
+    req.flash('warning', '名稱不得為空白')
+    return res.redirect('/index')
+  }
+
   Todo
     .create({
       name: req.body.name,
