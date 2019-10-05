@@ -16,12 +16,7 @@ const User = db.User
 function localCallback(email, password, done) {
   User.findOne({ where: { email: email } })
     .then(user => {
-      if (!user) return done(null, false, { message: 'That email is not registered' })
-
-      if (user.password != password) {
-        console.log('user password incorrect.')
-        return done(null, false, { message: 'Email or Password incorrect' })
-      }
+      if (!user || (user.password != password)) return done(null, false, { message: 'Email 或 Password 錯誤' })
       
       done(null, user)
     })
