@@ -50,19 +50,17 @@ router.post('/signup', async (req, res) => {
   const error = await checkSignUp(input) || []
   if (error.length) return res.render('signup', { css: 'sign', input, error })
 
-  User
-    .findOne({ where: { email: email } })
-    .then(user => {
-      if (user) {
-        res.render('signup', { input })
-      } else {
-        const newUser = new User({ name, email, password })
+  // 註冊帳戶
+  const slat = bcrypt.genSaltSync(10)
+  const hash = bcrypt.hashSync(input.password, slat)
+  input.password = hash
 
-        newUser.save()
-          .then(user => res.redirect('/'))
-      }
-    })
-    .catch(err => console.error(err))
+  try {
+    await User.create(input)
+    res.redirect('signin')
+  } catch (err) {
+    res.status(422).json(err)
+  }
 })
 
 // 登出

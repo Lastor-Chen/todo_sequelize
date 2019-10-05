@@ -4,6 +4,7 @@
 // ==============================
 
 const LocalStrategy = require('passport-local').Strategy
+const bcrypt = require('bcryptjs')
 
 // 載入 User model
 const db = require('../models')
@@ -16,8 +17,12 @@ const User = db.User
 function localCallback(email, password, done) {
   User.findOne({ where: { email: email } })
     .then(user => {
-      if (!user || (user.password != password)) return done(null, false, { message: 'Email 或 Password 錯誤' })
+      if (!user) return done(null, false, { message: 'Email 或 Password 錯誤' })
       
+      // check password
+      const success = bcrypt.compareSync(password, user.password)
+      if (!success) return done(null, false, { message: 'Email 或 Password 錯誤' })
+
       done(null, user)
     })
     .catch(err => console.error(err))
