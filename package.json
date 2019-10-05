@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
+    "seeder": "npx sequelize db:seed:all",
+    "remover": "npx sequelize db:seed:undo:all",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "讀完 AC 三個單元",
+    "done": false,
+    "UserId": 0
+  },
+  {
+    "name": "練習 SQLZoo 單元1",
+    "done": false,
+    "UserId": 0
+  },
+  {
+    "name": "AC 課程做 3 次",
+    "done": false,
+    "UserId": 0
+  },
+  {
+    "name": "解崩壞3日常",
+    "done": false,
+    "UserId": 1
+  },
+  {
+    "name": "解GBF日常",
+    "done": false,
+    "UserId": 1
+  },
+  {
+    "name": "寫 AC 作業",
+    "done": false,
+    "UserId": 1
+  }
+]
