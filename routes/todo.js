@@ -24,7 +24,6 @@ router.post('/new', (req, res) => {
   Todo
     .create({
       name: req.body.name,
-      done: false,
       UserId: req.user.id
     })
     .then(todo => res.redirect('/index'))
