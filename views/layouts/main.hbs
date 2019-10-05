@@ -19,9 +19,11 @@
       <div class="container">
         <a class="navbar-brand" href="/">Todo List</a>
         {{#if isAuthenticated}}
-          <a href="/user/signout" class="btn btn-outline-light">Sign out</a>
-        {{else}}
-          <a href="/user/signin" class="btn btn-outline-light">Sign in</a>
+          <a href="/users/signout" class="btn btn-outline-light">Sign Out</a>
+        {{else if signin}}
+          <a href="/users/signup" class="btn btn-outline-light">Sign Up</a>
+        {{else }}
+          <a href="/users/signin" class="btn btn-outline-light">Sign In</a>
         {{/if}}
       </div>
     </nav>
