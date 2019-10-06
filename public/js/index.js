@@ -1,10 +1,16 @@
 // 前端 index.js
 
-$('#data-plane').on('submit', e => {
-  if (e.target.matches('.del-form')) {
-    e.preventDefault()
+// =============================
 
-    const msg = '刪除後無法復原，確定刪除嗎?'
-    if (confirm(msg)) { e.target.submit() }
+// 點擊刪除按鈕後，將 id 傳給 Modal 的表單
+$('#data-plane').on('click', e => {
+  if (e.target.matches('.del-btn')) {
+    const id = e.target.dataset.id
+
+    // 將 id 注入 form action
+    let formAction = $('#del-form').attr('action')
+    formAction = formAction.replace('{id}', id)
+
+    $('#del-form').attr('action', formAction)
   }
 })

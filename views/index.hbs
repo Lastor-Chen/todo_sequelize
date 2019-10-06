@@ -1,5 +1,5 @@
 {{> alert}}
-{{!-- form --}}
+{{!-- Add todo form --}}
 <div class="row mb-3">
   <div class="col-auto mx-auto">
     <form action="/todos/new" method="POST">
@@ -13,8 +13,8 @@
   </div>
 </div>
 
+{{!-- todos plane --}}
 <section id="data-plane">
-  {{!-- todos plane --}}
   <h5 class="mb-3">To-do</h5>
   <ul id="todos" class="list-group mb-3">
     {{#each todos}}
@@ -26,9 +26,8 @@
           </div>
           <div class="col-auto">
             <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
-            <form class="del-form d-inline" action="/todos/{{this.id}}/delete?_method=DELETE" method="POST">
-              <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+            <button type="submit" class="btn btn-outline-secondary del-btn" data-id="{{this.id}}" data-toggle="modal"
+              data-target="#delModal">Delete</button>
           </div>
         </div>
       </li>
@@ -46,12 +45,32 @@
           </div>
           <div class="col-auto">
             <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
-            <form class="del-form d-inline" action="/todos/{{this.id}}/delete?_method=DELETE" method="POST">
-              <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+            <button type="submit" class="btn btn-outline-secondary del-btn" data-id="{{this.id}}" data-toggle="modal"
+              data-target="#delModal">Delete</button>
           </div>
         </div>
       </li>
     {{/each}}
   </ul>
 </section>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">確定刪除?</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-right">
+        {{!-- {id} 為 delBtn.js 使用的 flag --}}
+        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+        <form id="del-form" action="/todos/{id}/delete?_method=DELETE" method="POST" class="d-inline-block">
+          <button type="submit" class="btn btn-outline-secondary">確定</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
