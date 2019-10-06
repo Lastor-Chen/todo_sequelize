@@ -24,13 +24,14 @@
             <div class="col-auto mr-auto">
               <form action="/todos/{{this.id}}/edit?_method=PUT" method="POST">
                 <input id="{{this.id}}" type="checkbox" name="done" {{#if this.done}}checked{{/if}}>
-                <label class="todo-label mb-0" for="{{this.id}}">
-                  <input class="todo-name d-inline h5 mb-0" name="name" value="{{this.name}}" disabled>
+                <label class="cursor mb-0" for="{{this.id}}">
+                  <input class="todo-name d-inline h5 mb-0 unselectable" name="name" value="{{this.name}}" data-id="{{this.id}}" disabled>
                 </label>
+                <small class="text-info" data-id="{{this.id}}" hidden>按下 Enter 完成修改</small>
               </form>
             </div>
             <div class="col-auto">
-              <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
+              <a href="javascript:;" class="edit-btn btn btn-success" data-id="{{this.id}}">Edit</a>
               <button type="submit" class="btn btn-outline-secondary del-btn" data-id="{{this.id}}" data-toggle="modal"
                 data-target="#delModal">Delete</button>
             </div>
@@ -51,13 +52,14 @@
             <div class="col-auto mr-auto">
               <form action="/todos/{{this.id}}/edit?_method=PUT" method="POST">
                 <input id="{{this.id}}" type="checkbox" name="done" {{#if this.done}}checked{{/if}}>
-                <label class="todo-label mb-0" for="{{this.id}}">
-                  <input class="todo-name d-inline h5 mb-0" name="name" value="{{this.name}}" disabled>
+                <label class="cursor mb-0" for="{{this.id}}">
+                  <input class="todo-name d-inline h5 mb-0 unselectable" name="name" value="{{this.name}}" data-id="{{this.id}}" disabled>
                 </label>
+                <small class="text-info" data-id="{{this.id}}" hidden>按下 Enter 完成修改</small>
               </form>
             </div>
             <div class="col-auto">
-              <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
+              <a href="javascript:;" class="edit-btn btn btn-success" data-id="{{this.id}}">Edit</a>
               <button type="submit" class="btn btn-outline-secondary del-btn" data-id="{{this.id}}" data-toggle="modal"
                 data-target="#delModal">Delete</button>
             </div>

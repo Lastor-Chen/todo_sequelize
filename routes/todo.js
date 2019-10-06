@@ -33,22 +33,6 @@ router.post('/new', (req, res) => {
 })
 
 // Update
-router.get('/:id/edit', (req, res) => {
-  User.findByPk(req.user.id)
-    .then(user => {
-      if (!user) throw new Error('User not found')
-
-      return Todo.findOne({
-        where: {
-          UserId: req.user.id,
-          Id: req.params.id
-        } 
-      })
-    })
-    .then(todo => res.render('edit', { todo }) )
-    .catch(err => res.status(422).json(err))
-})
-
 router.put('/:id/edit', (req, res) => {
   Todo.findOne({ 
     where: {

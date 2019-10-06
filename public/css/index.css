@@ -1,5 +1,13 @@
-.todo-label {
+.cursor {
   cursor: pointer;
+}
+
+.unselectable {
+  pointer-events: none;
+}
+
+form small {
+  display: inline-block;
 }
 
 .todo-label:hover {
@@ -8,7 +16,6 @@
 
 .todo-name {
   border: 0;
-  pointer-events: none;
 }
 
 .todo-name:disabled {
