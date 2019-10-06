@@ -13,22 +13,45 @@
   </div>
 </div>
 
-{{!-- todos data plane --}}
-<ul id="data-plane" class="list-group">
-  {{#each todos}}
-  <li class="list-group-item">
-    <div class="row align-items-center">
-      <div class="col-auto mr-auto">
-        <input type="checkbox" name="done" {{#if this.done}}checked{{/if}} disabled>
-        <h5 class="d-inline">{{this.name}}</h5>
-      </div>
-      <div class="col-auto">
-        <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
-        <form class="del-form d-inline" action="/todos/{{this.id}}/delete?_method=DELETE" method="POST">
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-      </div>
-    </div>
-  </li>
-  {{/each}}
-</ul>
+<section id="data-plane">
+  {{!-- todos plane --}}
+  <h5 class="mb-3">To-do</h5>
+  <ul id="todos" class="list-group mb-3">
+    {{#each todos}}
+      <li class="list-group-item">
+        <div class="row align-items-center">
+          <div class="col-auto mr-auto">
+            <input type="checkbox" name="done" {{#if this.done}}checked{{/if}} disabled>
+            <h5 class="d-inline">{{this.name}}</h5>
+          </div>
+          <div class="col-auto">
+            <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
+            <form class="del-form d-inline" action="/todos/{{this.id}}/delete?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+  {{!-- dones plane --}}
+  <h5 class="mb-3">Done</h5>
+  <ul id="dones" class="list-group">
+    {{#each dones}}
+      <li class="list-group-item">
+        <div class="row align-items-center">
+          <div class="col-auto mr-auto">
+            <input type="checkbox" name="done" {{#if this.done}}checked{{/if}} disabled>
+            <h5 class="todo-name d-inline">{{this.name}}</h5>
+          </div>
+          <div class="col-auto">
+            <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
+            <form class="del-form d-inline" action="/todos/{{this.id}}/delete?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</section>

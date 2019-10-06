@@ -8,7 +8,6 @@ const router = express.Router()
 
 // sequelize Model
 const db = require('../models')
-const User = db.User
 const Todo = db.Todo
 
 
@@ -27,7 +26,16 @@ router.get('/index', (req, res) => {
     where: { UserId: req.user.id }, 
     order: [ ['done', 'ASC'] ] 
   })
-    .then(todos => res.render('index', { js: 'index', todos }) )
+    .then(results => {
+      const todos = []
+      const dones = []
+
+      results.forEach(item => {
+        item.done ? dones.push(item) : todos.push(item)
+      })
+
+      res.render('index', { css: 'index', js: 'index', todos, dones })
+    })
     .catch(err => res.status(422).json(err) )
 })
 
