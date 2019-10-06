@@ -24,7 +24,7 @@ router.get('/index', (req, res) => {
   req.flash('email')
 
   Todo.findAll({ where: { UserId: req.user.id } })
-    .then(todos => res.render('index', { todos }) )
+    .then(todos => res.render('index', { js: 'index', todos }) )
     .catch(err => res.status(422).json(err) )
 })
 
