@@ -32,23 +32,6 @@ router.post('/new', (req, res) => {
     .catch(err => res.status(422).json(err))
 })
 
-// Read
-router.get('/:id', (req, res) => {
-  User.findByPk(req.user.id)
-    .then(user => {
-      if (!user) throw new Error('User not found')
-
-      return Todo.findOne({ 
-        where: {
-          UserId: req.user.id,
-          Id: req.params.id
-        } 
-      })
-    })
-    .then(todo => res.render('detail', { todo }) )
-    .catch(err => res.status(422).json(err) )
-})
-
 // Update
 router.get('/:id/edit', (req, res) => {
   User.findByPk(req.user.id)
@@ -78,7 +61,7 @@ router.put('/:id/edit', (req, res) => {
     todo.done = (req.body.done === 'on')  // 轉布林
     return todo.save()
   })
-  .then(todo => res.redirect(`/todos/${req.params.id}`))
+  .then(todo => res.redirect(`/index`))
   .catch(err => res.status(422).json(err) )
 })
 

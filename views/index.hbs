@@ -23,7 +23,6 @@
         <h5 class="d-inline">{{this.name}}</h5>
       </div>
       <div class="col-auto">
-        <a href="/todos/{{this.id}}" class="btn btn-secondary">Detail</a>
         <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
         <form class="del-form d-inline" action="/todos/{{this.id}}/delete?_method=DELETE" method="POST">
           <button type="submit" class="btn btn-danger">Delete</button>
