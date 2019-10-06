@@ -23,7 +23,10 @@ router.get('/index', (req, res) => {
   // 登入成功時，洗掉 sign in 表單輸入保留值
   req.flash('email')
 
-  Todo.findAll({ where: { UserId: req.user.id } })
+  Todo.findAll({
+    where: { UserId: req.user.id }, 
+    order: [ ['done', 'ASC'] ] 
+  })
     .then(todos => res.render('index', { js: 'index', todos }) )
     .catch(err => res.status(422).json(err) )
 })
