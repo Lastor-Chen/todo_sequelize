@@ -14,3 +14,8 @@ $('#data-plane').on('click', e => {
     $('#del-form').attr('action', formAction)
   }
 })
+
+// 監聽 todos checkbox
+$('#data-plane').change(e => {
+  $(e.target).parent().submit()
+})

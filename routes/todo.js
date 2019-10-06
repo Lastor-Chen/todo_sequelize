@@ -54,14 +54,14 @@ router.put('/:id/edit', (req, res) => {
     where: {
         UserId: req.user.id,
         Id: req.params.id
-      }
+    }
   })
   .then(todo => {
-    todo.name = req.body.name
+    if (req.body.name) { todo.name = req.body.name }
     todo.done = (req.body.done === 'on')  // 轉布林
     return todo.save()
   })
-  .then(todo => res.redirect(`/index`))
+  .then(todo => res.redirect(`/index`) )
   .catch(err => res.status(422).json(err) )
 })
 

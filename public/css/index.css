@@ -1,3 +1,20 @@
+.todo-label {
+  cursor: pointer;
+}
+
+.todo-label:hover {
+  background-color: #91cdf0;
+}
+
+.todo-name {
+  border: 0;
+  pointer-events: none;
+}
+
+.todo-name:disabled {
+  background-color: unset;
+}
+
 #dones .todo-name {
   color: #ccc;
   text-decoration: line-through;

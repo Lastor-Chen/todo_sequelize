@@ -22,8 +22,12 @@
         <li class="list-group-item">
           <div class="row align-items-center">
             <div class="col-auto mr-auto">
-              <input type="checkbox" name="done" {{#if this.done}}checked{{/if}} disabled>
-              <h5 class="d-inline">{{this.name}}</h5>
+              <form action="/todos/{{this.id}}/edit?_method=PUT" method="POST">
+                <input id="{{this.id}}" type="checkbox" name="done" {{#if this.done}}checked{{/if}}>
+                <label class="todo-label mb-0" for="{{this.id}}">
+                  <input class="todo-name d-inline h5 mb-0" name="name" value="{{this.name}}" disabled>
+                </label>
+              </form>
             </div>
             <div class="col-auto">
               <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
@@ -45,8 +49,12 @@
         <li class="list-group-item">
           <div class="row align-items-center">
             <div class="col-auto mr-auto">
-              <input type="checkbox" name="done" {{#if this.done}}checked{{/if}} disabled>
-              <h5 class="todo-name d-inline">{{this.name}}</h5>
+              <form action="/todos/{{this.id}}/edit?_method=PUT" method="POST">
+                <input id="{{this.id}}" type="checkbox" name="done" {{#if this.done}}checked{{/if}}>
+                <label class="todo-label mb-0" for="{{this.id}}">
+                  <input class="todo-name d-inline h5 mb-0" name="name" value="{{this.name}}" disabled>
+                </label>
+              </form>
             </div>
             <div class="col-auto">
               <a href="/todos/{{this.id}}/edit" class="btn btn-success">Edit</a>
