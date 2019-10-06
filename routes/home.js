@@ -23,15 +23,8 @@ router.get('/index', (req, res) => {
   // 登入成功時，洗掉 sign in 表單輸入保留值
   req.flash('email')
 
-  User.findByPk(req.user.id)
-    .then(user => {
-      if (!user) throw new Error('User not found')
-
-      return Todo.findAll({ where: { UserId: req.user.id } })
-    })
-    .then(todos => {
-      res.render('index', { todos })
-    })
+  Todo.findAll({ where: { UserId: req.user.id } })
+    .then(todos => res.render('index', { todos }) )
     .catch(err => res.status(422).json(err) )
 })
 
