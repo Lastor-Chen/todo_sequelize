@@ -24,7 +24,7 @@
             <div class="col-auto mb-sm-2 mb-md-0">
               <form action="/todos/{{this.id}}/edit?_method=PUT" method="POST">
                 <input id="{{this.id}}" type="checkbox" name="done" {{#if this.done}}checked{{/if}}>
-                <label class="cursor mb-0" for="{{this.id}}">
+                <label class="todo-label cursor mb-0" for="{{this.id}}">
                   <input class="todo-name h5 mb-0 unselectable" name="name" value="{{this.name}}" data-id="{{this.id}}" disabled>
                 </label>
                 <small class="text-info" data-id="{{this.id}}" hidden>按下 Enter 完成修改</small>
@@ -52,7 +52,7 @@
             <div class="col-auto mb-sm-2 mb-md-0">
               <form action="/todos/{{this.id}}/edit?_method=PUT" method="POST">
                 <input id="{{this.id}}" type="checkbox" name="done" {{#if this.done}}checked{{/if}}>
-                <label class="cursor mb-0" for="{{this.id}}">
+                <label class="todo-label cursor mb-0" for="{{this.id}}">
                   <input class="todo-name h5 mb-0 unselectable" name="name" value="{{this.name}}" data-id="{{this.id}}"
                     disabled>
                 </label>
