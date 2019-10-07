@@ -21,12 +21,13 @@ Database used MySQL.
 * 可對 todo 進行 CRUD 操作
 
 ## Usage
-此為 localhost 本機端專案，需下載本專案與相關套件之後於本機執行啟動。
+* 可前往 [Heroku](https://todo-ver-sequelize.herokuapp.com/) 瀏覽佈署版本。 (無法使用 Facebook 登入)
+* 或在本機端執行 (需下載，並安裝依賴套件)
 
 安裝方法，請參考下方 [Dependency packages](#Dependency-packages) 與 [Installation](#Installation) 項目。 <br>
 安裝完成後，使用以下步驟於本機端啟動專案。
 
-1. 啟動 MySQL。 
+1. 於 cmd 啟動 MySQL。 
     
     * macOS
     ```
@@ -39,7 +40,17 @@ Database used MySQL.
     $ net start mysql80
     ```
 
-1. 回到專案目錄，執行 seeder，用於 MySQL 建立基本資料 (非必須)
+1. 使用 MySQL Workbench 工具，新建 database
+    ```
+    # SQL code
+    CREATE DATABASE `your_database_name`;
+    ```
+1. 在 cmd 進入專案目錄，執行 migration 設定 database
+    ```
+    $ npx sequelize db:migrate
+    ```
+
+1. 執行 seeder，用於 MySQL 建立基本資料 (非必須)
     ```
     $ npm run seeder
     ```
@@ -61,11 +72,18 @@ Database used MySQL.
     ```
 
 
-1. 於專案根目錄中新建 .env 檔案，設置環境變數。(Facebook 開發者 App 資訊)
+1. 於專案根目錄中新建 .env 檔案，設置環境變數。
     ```
+    // Facebook developer App 帳戶資料
     FACEBOOK_ID = ***
     FACEBOOK_SECRET = ***
     FACEBOOK_CALLBACK = http://localhost:3000/auth/facebook/callback
+    
+    // MySQL Server 帳戶資料
+    MYSQL_USER = *** (your_user_name)
+	MYSQL_KEY = *** (your_password)
+	MYSQL_DATABASE = *** (your_database_name)
+	MYSQL_HOST = 127.0.0.1
     ```
 
 1. 啟動 Node.js Server
