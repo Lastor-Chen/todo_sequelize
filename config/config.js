@@ -1,3 +1,6 @@
+// 單獨 run seeder 時，需要調用 dotenv
+if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
+
 module.exports = {
   "development": {
     "username": process.env.MYSQL_USER,
